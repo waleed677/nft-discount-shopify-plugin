@@ -16,8 +16,8 @@ import { ProductsCard } from "../components";
 
 export default function HomePage() {
   return (
-    <Page narrowWidth>
-      <TitleBar title="App name" primaryAction={null} />
+    <Page  >
+      <TitleBar title="Welcome to Is Not Art" primaryAction={null} />
       <Layout>
         <Layout.Section>
           <Card sectioned>
