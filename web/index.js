@@ -36,6 +36,15 @@ app.use("/api/*", shopify.validateAuthenticatedSession());
 
 app.use(express.json());
 
+// get store name 
+
+app.get("/api/getStoreName", async(_req, res) => {
+  const storeName = await shopify.api.rest.Shop.all({
+    session: res.locals.shopify.session,
+  });
+  res.send(storeName);
+});
+
 app.get("/api/products/count", async (_req, res) => {
   const countData = await shopify.api.rest.Product.count({
     session: res.locals.shopify.session,
@@ -66,5 +75,9 @@ app.use("/*", shopify.ensureInstalledOnShop(), async (_req, res, _next) => {
     .set("Content-Type", "text/html")
     .send(readFileSync(join(STATIC_PATH, "index.html")));
 });
+
+
+
+
 
 app.listen(PORT);
